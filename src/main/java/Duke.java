@@ -1,38 +1,44 @@
 package main.java;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class Duke {
-    private static Task todoList = new Task(100);
+//    public static ArrayList<Task> todoList = new ArrayList<>();
+    private static ArrayList<Task> todoList = TaskList.getInstance().getList();
     private static void run() {
-        Scanner input = new Scanner(System.in);
-        String cmd = input.nextLine();
-        while (true) {
+//        Scanner input = new Scanner(System.in);
+//        String cmd = input.nextLine();
+        Parser parser = new Parser();
+//        parser.scan();
+//        String cmd = parser.getCmd();
+        while (parser.isPending) {
+            parser.scan();
             System.out.println("\t____________________________________________________________");
-            if (cmd.toLowerCase().equalsIgnoreCase("bye")) {
-                break;
+            if (parser.isTask) {
+                System.out.println("\tGot it. I've added this task: ");
+                System.out.println("\t\t" + parser.getTask().toString());
+                System.out.println("\tNow you have " + todoList.size() + (todoList.size() > 1 ? " tasks" : " task") + " in the list.");
             }
-            if (cmd.toLowerCase().equalsIgnoreCase("list")) {
-                int i = 1;
-                boolean[] status = todoList.getStatus();
-                System.out.println("\tHere are the tasks in your list:");
-                for (String item : todoList.getTask()) {
-                    if (item != null) {
-                        System.out.println("\t" + i + ".[" + (status[i-1] ? "\u2717" : " ") + "] " + item);
-                        i++;
-                    }
-                }
-            } else if (cmd.length() > 4 && cmd.substring(0, 4).toLowerCase().equalsIgnoreCase("done")) {
-                int itemNumber = Integer.parseInt(cmd.substring(5)) - 1;
-                todoList.doTask(itemNumber);
-                System.out.println("\tNice! I've marked this task as done:");
-                System.out.println("\t["+ (todoList.getStatus()[itemNumber] ? "\u2717" : " ") +"] " + todoList.getTask()[itemNumber]);
-            } else {
-                todoList.setTask(cmd);
-                System.out.println("\tadded: "+cmd);
-            }
+//            if (cmd.toLowerCase().equalsIgnoreCase("bye")) {
+//                break;
+//            }
+//            if (cmd.toLowerCase().equalsIgnoreCase("list")) {
+//
+//            } else if (cmd.length() > 4 && cmd.substring(0, 4).toLowerCase().equalsIgnoreCase("done")) {
+//                int itemNumber = Integer.parseInt(cmd.substring(5)) - 1;
+//                todoList.get(itemNumber).markAsDone();
+//                System.out.println("\tNice! I've marked this task as done:");
+//                System.out.println("\t["+ todoList.get(itemNumber).getStatusIcon() + "] " + todoList.get(itemNumber).description);
+//            } else {
+//                Task newTask = new Task(cmd);
+//                todoList.add(newTask);
+//                System.out.println("\tadded: "+cmd);
+//            }
             System.out.println("\t____________________________________________________________");
-            cmd = input.nextLine();
+//            parser.scan();
+//            cmd = parser.getCmd();
+//            cmd = input.nextLine();
+//            parser.parse(cmd);
         }
     }
     public static void main(String[] args) {
