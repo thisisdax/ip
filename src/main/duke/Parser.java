@@ -60,6 +60,24 @@ public class Parser {
                     this.isTask = false;
                 }
                 break;
+            case "delete":
+                if (text[1].isEmpty() || text[1].isBlank()) {
+                    throw new DukeException("\t☹ OOPS!!! Please specify a task to delete!");
+                }
+                try {
+                    int index = Integer.parseInt(text[1]);
+                    if (index > 0) {
+                        System.out.println("\t____________________________________________________________");
+                        System.out.println("\tNoted. I've removed this task:");
+                        System.out.println("\t\t" + todoList.remove(index - 1).toString());
+                        System.out.println("\tNow you have " + todoList.size() + " tasks in the list.");
+                        System.out.println("\t____________________________________________________________");
+                        this.isTask = false;
+                    }
+                } catch (NumberFormatException e ) {
+                    throw new DukeException("\t☹ OOPS!!! Please specify a valid number instead. E.g. 'delete 1'");
+                }
+                break;
             default:
                 this.body = "";
                 this.isTask = false;
@@ -73,14 +91,15 @@ public class Parser {
 
     public void printList() {
         int i = 1;
+        System.out.println("\t____________________________________________________________");
         System.out.println("\tHere are the tasks in your list:");
         for (Task item : todoList) {
             if (item != null) {
                 System.out.println("\t" + i + "." + item.toString());
-//                System.out.println("\t" + i + ".[" + item.getStatusIcon() + "] " + item.description);
                 i++;
             }
         }
+        System.out.println("\t____________________________________________________________");
     }
 
     public void addTodo(String todo) throws DukeException {
