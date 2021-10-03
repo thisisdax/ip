@@ -4,9 +4,13 @@ public class Task {
     protected String description;
     protected boolean isDone;
 
-    public Task(String description) {
-        this.description = description;
-        this.isDone = false;
+    public Task(String description) throws DukeException {
+        if(description.isEmpty() || description.isBlank()) {
+            throw new DukeException("\t☹ OOPS!!! The description of a todo cannot be empty.");
+        } else {
+            this.description = description;
+            this.isDone = false;
+        }
     }
 
     public String getStatusIcon() {

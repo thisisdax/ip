@@ -18,7 +18,7 @@ public class Parser {
         this.isPending = true;
     }
 
-    public void parse(String input) {
+    public void parse(String input) throws DukeException {
         this.text = input.split(" ");
 
         switch (text[0].toLowerCase()) {
@@ -32,22 +32,38 @@ public class Parser {
                 break;
             case "todo":
                 this.body = String.join(" ", Arrays.copyOfRange(text, 1, text.length));
-                this.addTodo(this.body);
-                this.isTask = true;
+                try {
+                    this.addTodo(this.body);
+                    this.isTask = true;
+                } catch (DukeException e) {
+                    e.printErrorMessage();
+                    this.isTask = false;
+                }
                 break;
             case "deadline":
                 this.body = String.join(" ", Arrays.copyOfRange(text, 1, text.length-2));
-                this.addDeadline(this.body, text[text.length-1]);
-                this.isTask = true;
+                try {
+                    this.addDeadline(this.body, text[text.length-1]);
+                    this.isTask = true;
+                } catch (DukeException e) {
+                    e.printErrorMessage();
+                    this.isTask = false;
+                }
                 break;
             case "event":
                 this.body = String.join(" ", Arrays.copyOfRange(text, 1, text.length-2));
-                this.addEvent(this.body, text[text.length-2], text[text.length-1]);
-                this.isTask = true;
+                try {
+                    this.addEvent(this.body, text[text.length-2], text[text.length-1]);
+                    this.isTask = true;
+                } catch (DukeException e) {
+                    e.printErrorMessage();
+                    this.isTask = false;
+                }
                 break;
             default:
-                System.out.println("Try again?");
-                break;
+                this.body = "";
+                this.isTask = false;
+                throw new DukeException("\t☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
     }
 
@@ -67,17 +83,17 @@ public class Parser {
         }
     }
 
-    public void addTodo(String todo) {
+    public void addTodo(String todo) throws DukeException {
         this.task = new Todo(todo);
         todoList.add(this.task);
     }
 
-    public void addDeadline(String deadline, String date) {
+    public void addDeadline(String deadline, String date) throws DukeException {
         this.task = new Deadline(deadline, date);
         todoList.add(this.task);
     }
 
-    public void addEvent(String event, String date, String time) {
+    public void addEvent(String event, String date, String time) throws DukeException {
         this.task = new Event(event, date, time);
         todoList.add(this.task);
     }
@@ -86,7 +102,7 @@ public class Parser {
         return this.task;
     }
 
-    public void scan() {
+    public void scan() throws DukeException {
         this.input = this.scan.nextLine();
         this.parse(input);
     }
