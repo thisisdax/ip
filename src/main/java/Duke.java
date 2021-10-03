@@ -12,12 +12,17 @@ public class Duke {
 //        parser.scan();
 //        String cmd = parser.getCmd();
         while (parser.isPending) {
-            parser.scan();
-            System.out.println("\t____________________________________________________________");
-            if (parser.isTask) {
-                System.out.println("\tGot it. I've added this task: ");
-                System.out.println("\t\t" + parser.getTask().toString());
-                System.out.println("\tNow you have " + todoList.size() + (todoList.size() > 1 ? " tasks" : " task") + " in the list.");
+            try {
+                parser.scan();
+                if (parser.isTask) {
+                    System.out.println("\t____________________________________________________________");
+                    System.out.println("\tGot it. I've added this task: ");
+                    System.out.println("\t\t" + parser.getTask().toString());
+                    System.out.println("\tNow you have " + todoList.size() + (todoList.size() > 1 ? " tasks" : " task") + " in the list.");
+                    System.out.println("\t____________________________________________________________");
+                }
+            } catch (DukeException e) {
+                e.printErrorMessage();
             }
 //            if (cmd.toLowerCase().equalsIgnoreCase("bye")) {
 //                break;
@@ -34,7 +39,6 @@ public class Duke {
 //                todoList.add(newTask);
 //                System.out.println("\tadded: "+cmd);
 //            }
-            System.out.println("\t____________________________________________________________");
 //            parser.scan();
 //            cmd = parser.getCmd();
 //            cmd = input.nextLine();
