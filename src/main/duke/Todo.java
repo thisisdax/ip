@@ -1,4 +1,4 @@
-package main.java;
+package main.duke;
 
 public class Todo extends Task {
     public Todo(String description) throws DukeException {

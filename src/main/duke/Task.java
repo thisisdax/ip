@@ -1,4 +1,4 @@
-package main.java;
+package main.duke;
 
 public abstract class Task {
     protected String description;
