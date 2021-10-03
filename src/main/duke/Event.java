@@ -1,4 +1,4 @@
-package main.java;
+package main.duke;
 
 public class Event extends Task {
     protected String date;
