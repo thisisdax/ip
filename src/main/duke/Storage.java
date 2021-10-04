@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class FileUtils {
+public class Storage {
     private static String basePath = new File("").getAbsolutePath();
     private static File file = new File(basePath.concat("/data/duke.txt"));
     private static ArrayList<Task> todoList = TaskList.getInstance().getList();

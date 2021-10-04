@@ -36,7 +36,7 @@ public class Parser {
                 this.isTask = false;
                 break;
             case "list":
-                this.printList();
+                Ui.printList();
                 this.isTask = false;
                 break;
             case "todo":
@@ -78,20 +78,13 @@ public class Parser {
                 try {
                     int index = Integer.parseInt(text[1]);
                     if (index > todoList.size()) {
-                        System.out.println("\t____________________________________________________________");
-                        System.out.println("\t☹ OOPS!!! Please specify a valid number.");
-                        System.out.println("\tNow you have " + todoList.size() + " tasks in the list.");
-                        System.out.println("\t____________________________________________________________");
+                        Ui.specifyValidNumber();
                         this.body = "";
                         this.isTask = false;
                         break;
                     }
                     if (index > 0) {
-                        System.out.println("\t____________________________________________________________");
-                        System.out.println("\tNoted. I've removed this task:");
-                        System.out.println("\t\t" + todoList.remove(index - 1).toString());
-                        System.out.println("\tNow you have " + todoList.size() + " tasks in the list.");
-                        System.out.println("\t____________________________________________________________");
+                        Ui.removedTask(todoList.remove(index - 1).toString());
                         this.isTask = false;
                     }
                 } catch (NumberFormatException e ) {
@@ -111,19 +104,6 @@ public class Parser {
 
     public void setExit() {
         this.isPending = false;
-    }
-
-    public void printList() {
-        int i = 1;
-        System.out.println("\t____________________________________________________________");
-        System.out.println("\tHere are the tasks in your list:");
-        for (Task item : todoList) {
-            if (item != null) {
-                System.out.println("\t" + i + "." + item.toString());
-                i++;
-            }
-        }
-        System.out.println("\t____________________________________________________________");
     }
 
     /**
