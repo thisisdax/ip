@@ -91,6 +91,14 @@ public class Parser {
                     throw new DukeException("\t☹ OOPS!!! Please specify a valid number instead. E.g. 'delete 1'");
                 }
                 break;
+            case "find":
+                if (text[1].isEmpty() || text[1].isBlank()) {
+                    throw new DukeException("\t☹ OOPS!!! Please specify a word to find!");
+                }
+                Ui.searchList(text[1]);
+                this.body = "";
+                this.isTask = false;
+                break;
             default:
                 this.body = "";
                 this.isTask = false;

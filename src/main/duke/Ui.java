@@ -1,6 +1,7 @@
 package main.duke;
 
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Ui {
     private static ArrayList<Task> todoList = TaskList.getInstance().getList();
@@ -29,6 +30,19 @@ public class Ui {
                 System.out.println("\t" + i + "." + item.toString());
                 i++;
             }
+        }
+        System.out.println("\t____________________________________________________________");
+    }
+
+    public static void searchList(String word) {
+        int i = 1;
+        System.out.println("\t____________________________________________________________");
+        System.out.println("\tHere are the matching tasks in your list:");
+        for (Task item : todoList) {
+            if (item.description.toLowerCase().contains(word.toLowerCase())) {
+                System.out.println("\t" + i + "." + item.toString());
+            }
+            i++;
         }
         System.out.println("\t____________________________________________________________");
     }
