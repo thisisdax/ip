@@ -3,10 +3,6 @@ package main.duke;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
 
 /**
  * Handles input from user entry
@@ -81,6 +77,15 @@ public class Parser {
                 }
                 try {
                     int index = Integer.parseInt(text[1]);
+                    if (index > todoList.size()) {
+                        System.out.println("\t____________________________________________________________");
+                        System.out.println("\t☹ OOPS!!! Please specify a valid number.");
+                        System.out.println("\tNow you have " + todoList.size() + " tasks in the list.");
+                        System.out.println("\t____________________________________________________________");
+                        this.body = "";
+                        this.isTask = false;
+                        break;
+                    }
                     if (index > 0) {
                         System.out.println("\t____________________________________________________________");
                         System.out.println("\tNoted. I've removed this task:");
@@ -92,9 +97,6 @@ public class Parser {
                 } catch (NumberFormatException e ) {
                     throw new DukeException("\t☹ OOPS!!! Please specify a valid number instead. E.g. 'delete 1'");
                 }
-                break;
-            case "save":
-
                 break;
             default:
                 this.body = "";

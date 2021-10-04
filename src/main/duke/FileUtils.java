@@ -21,9 +21,7 @@ public class FileUtils {
             } else {
                 Scanner scan = new Scanner(file);
                 while (scan.hasNextLine()) {
-                    System.out.println("___");
                     transformToLoadData(scan.nextLine());
-                    System.out.println("___");
                 }
             }
         } catch (IOException e) {
