@@ -3,14 +3,9 @@ package main.duke;
 import java.util.*;
 
 public class Duke {
-//    public static ArrayList<Task> todoList = new ArrayList<>();
     private static ArrayList<Task> todoList = TaskList.getInstance().getList();
     private static void run() {
-//        Scanner input = new Scanner(System.in);
-//        String cmd = input.nextLine();
         Parser parser = new Parser();
-//        parser.scan();
-//        String cmd = parser.getCmd();
         while (parser.isPending) {
             try {
                 parser.scan();
@@ -24,25 +19,6 @@ public class Duke {
             } catch (DukeException e) {
                 e.printErrorMessage();
             }
-//            if (cmd.toLowerCase().equalsIgnoreCase("bye")) {
-//                break;
-//            }
-//            if (cmd.toLowerCase().equalsIgnoreCase("list")) {
-//
-//            } else if (cmd.length() > 4 && cmd.substring(0, 4).toLowerCase().equalsIgnoreCase("done")) {
-//                int itemNumber = Integer.parseInt(cmd.substring(5)) - 1;
-//                todoList.get(itemNumber).markAsDone();
-//                System.out.println("\tNice! I've marked this task as done:");
-//                System.out.println("\t["+ todoList.get(itemNumber).getStatusIcon() + "] " + todoList.get(itemNumber).description);
-//            } else {
-//                Task newTask = new Task(cmd);
-//                todoList.add(newTask);
-//                System.out.println("\tadded: "+cmd);
-//            }
-//            parser.scan();
-//            cmd = parser.getCmd();
-//            cmd = input.nextLine();
-//            parser.parse(cmd);
         }
     }
     public static void main(String[] args) {
