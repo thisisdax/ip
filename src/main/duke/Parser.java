@@ -99,6 +99,27 @@ public class Parser {
                 this.body = "";
                 this.isTask = false;
                 break;
+            case "done":
+                if (text[1].isEmpty() || text[1].isBlank()) {
+                    throw new DukeException("\t☹ OOPS!!! Please specify a task to be marked as done!");
+                }
+                try {
+                    int index = Integer.parseInt(text[1]);
+                    if (index > todoList.size()) {
+                        Ui.specifyValidNumber();
+                        this.body = "";
+                        this.isTask = false;
+                        break;
+                    }
+                    if (index > 0) {
+                        todoList.get(index - 1).markAsDone();
+                        Ui.markAsDone(todoList.get(index - 1).toString());
+                        this.isTask = false;
+                    }
+                } catch (NumberFormatException e ) {
+                    throw new DukeException("\t☹ OOPS!!! Please specify a valid number instead. E.g. 'delete 1'");
+                }
+                break;
             default:
                 this.body = "";
                 this.isTask = false;

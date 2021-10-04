@@ -46,4 +46,11 @@ public class Ui {
         }
         System.out.println("\t____________________________________________________________");
     }
+
+    public static void markAsDone(String info) {
+        System.out.println("\t____________________________________________________________");
+        System.out.println("\tNoted. I've marked the following task as done:");
+        System.out.println("\t\t" + info);
+        System.out.println("\t____________________________________________________________");
+    }
 }
