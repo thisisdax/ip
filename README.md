@@ -22,20 +22,3 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
    | |_| | |_| |   <  __/
    |____/ \__,_|_|\_\___|
    ```
-   
-## Project description
-This is a task tracking program that stores a list of tasks. The current supported task includes the follow,
-- Todo: A simple todo task that only includes description of the task.
-- Deadline: A task with a deadline. E.g. (Project A 5th Aug)
-- Event: A task with that includes time. E.g. (Movie 5th Aug 5pm)
-
-## User guide
-The following are the available commands to use the program.
-1. list - display the status of the current list of task
-2. todo - add a todo task (e.g. todo Study)
-3. deadline - add a deadline task (e.g. deadline Project A 5th Aug)
-4. event - add an event task (e.g. event Movie 5th Aug 5pm)
-5. done - mark task as done by index (e.g. done 2)
-6. delete - delete an existing task by index (e.g. delete 2)
-7. find - find keyword in current list of task (e.g. find book)
-8. bye - exits the program and saves current list of tasks
