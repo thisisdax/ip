@@ -1,11 +1,13 @@
 package main.duke;
 
+import java.io.File;
 import java.util.*;
 
 public class Duke {
 //    public static ArrayList<Task> todoList = new ArrayList<>();
     private static ArrayList<Task> todoList = TaskList.getInstance().getList();
     private static void run() {
+        FileUtils.loadData();
 //        Scanner input = new Scanner(System.in);
 //        String cmd = input.nextLine();
         Parser parser = new Parser();
@@ -57,8 +59,8 @@ public class Duke {
         System.out.println("\tHello! I'm Duke");
         System.out.println("\tWhat can I do for you?");
         System.out.println("\t____________________________________________________________");
-
         run();
+        FileUtils.saveData();
         System.out.println("\tBye. Hope to see you again soon!");
         System.out.println("\t____________________________________________________________");
     }

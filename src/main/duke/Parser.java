@@ -3,6 +3,10 @@ package main.duke;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Parser {
     protected String input;
@@ -20,7 +24,7 @@ public class Parser {
 
     public void parse(String input) throws DukeException {
         this.text = input.split(" ");
-
+        String date = "";
         switch (text[0].toLowerCase()) {
             case "bye":
                 this.setExit();
@@ -42,8 +46,9 @@ public class Parser {
                 break;
             case "deadline":
                 this.body = String.join(" ", Arrays.copyOfRange(text, 1, text.length-2));
+                date = String.join(" ", Arrays.copyOfRange(text, text.length-2, text.length));
                 try {
-                    this.addDeadline(this.body, text[text.length-1]);
+                    this.addDeadline(this.body, date);
                     this.isTask = true;
                 } catch (DukeException e) {
                     e.printErrorMessage();
@@ -51,9 +56,10 @@ public class Parser {
                 }
                 break;
             case "event":
-                this.body = String.join(" ", Arrays.copyOfRange(text, 1, text.length-2));
+                this.body = String.join(" ", Arrays.copyOfRange(text, 1, text.length-3));
+                date = String.join(" ", Arrays.copyOfRange(text, text.length-3, text.length-1));
                 try {
-                    this.addEvent(this.body, text[text.length-2], text[text.length-1]);
+                    this.addEvent(this.body, date, text[text.length-1]);
                     this.isTask = true;
                 } catch (DukeException e) {
                     e.printErrorMessage();
@@ -77,6 +83,9 @@ public class Parser {
                 } catch (NumberFormatException e ) {
                     throw new DukeException("\t☹ OOPS!!! Please specify a valid number instead. E.g. 'delete 1'");
                 }
+                break;
+            case "save":
+
                 break;
             default:
                 this.body = "";
