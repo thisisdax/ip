@@ -14,4 +14,14 @@ public class Event extends Task {
     public String toString() {
         return "[E]" + "[" + super.getStatusIcon() + "] " + super.description + " (at: " + date + " " + time + ")";
     }
+
+    @Override
+    public String getType() {
+        return "E";
+    }
+
+    @Override
+    public String toSave() {
+        return getType() + " | " + (super.isDone ? "1" : "0") + " | " + super.description + " | " + date + " " + time;
+    }
 }

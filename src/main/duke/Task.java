@@ -22,4 +22,6 @@ public abstract class Task {
     }
 
     public abstract String toString();
+    public abstract String getType();
+    public abstract String toSave();
 }
