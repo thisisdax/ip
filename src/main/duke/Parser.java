@@ -8,6 +8,10 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * Handles input from user entry
+ */
+
 public class Parser {
     protected String input;
     protected String[] text;
@@ -21,6 +25,11 @@ public class Parser {
     public Parser() {
         this.isPending = true;
     }
+
+    /**
+     * @param input String type input from user entry
+     * @throws DukeException Duke specific errors
+     */
 
     public void parse(String input) throws DukeException {
         this.text = input.split(" ");
@@ -94,6 +103,10 @@ public class Parser {
         }
     }
 
+    /**
+     * ends the parsing of user entry
+     */
+
     public void setExit() {
         this.isPending = false;
     }
@@ -111,16 +124,31 @@ public class Parser {
         System.out.println("\t____________________________________________________________");
     }
 
+    /**
+     * @param todo is the description of the entry
+     * @throws DukeException Duke specific errors
+     */
     public void addTodo(String todo) throws DukeException {
         this.task = new Todo(todo);
         todoList.add(this.task);
     }
 
+    /**
+     * @param deadline is the description of the entry
+     * @param date is the date of the entry
+     * @throws DukeException Duke specific errors
+     */
     public void addDeadline(String deadline, String date) throws DukeException {
         this.task = new Deadline(deadline, date);
         todoList.add(this.task);
     }
 
+    /**
+     * @param deadline is the description of the entry
+     * @param date is the date of the entry
+     * @param time is the time of the entry
+     * @throws DukeException Duke specific errors
+     */
     public void addEvent(String event, String date, String time) throws DukeException {
         this.task = new Event(event, date, time);
         todoList.add(this.task);
