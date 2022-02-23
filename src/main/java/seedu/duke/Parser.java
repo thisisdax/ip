@@ -29,7 +29,7 @@ public class Parser {
 
     public void parse(String input) throws DukeException {
         this.text = input.split(" ");
-        String date = "";
+        String date;
         switch (text[0].toLowerCase()) {
         case "bye":
             this.setExit();
@@ -187,7 +187,7 @@ public class Parser {
     }
 
     public void updateTask(int index, String[] text) {
-        String date = "";
+        String date;
         if (todoList.get(index - 1).getType() == "T") {
             this.body = String.join(" ", Arrays.copyOfRange(text, 1, text.length));
             Todo updateTodo = (Todo) todoList.get(index - 1);
