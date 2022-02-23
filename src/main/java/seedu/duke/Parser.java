@@ -99,6 +99,27 @@ public class Parser {
             this.body = "";
             this.isTask = false;
             break;
+        case "update":
+            if (text[1].isEmpty() || text[1].isBlank()) {
+                throw new DukeException("\t☹ OOPS!!! Please specify a task to update!");
+            }
+            try {
+                int index = Integer.parseInt(text[1]);
+                if (index > todoList.size()) {
+                    Ui.specifyValidNumber();
+                    this.body = "";
+                    this.isTask = false;
+                    break;
+                }
+                if (index > 0) {
+                    this.updateTask(index, text);
+                    Ui.updateTask(todoList.get(index - 1).toString());
+                    this.isTask = false;
+                }
+            } catch (NumberFormatException e) {
+                throw new DukeException("\t☹ OOPS!!! Please specify a valid number instead. E.g. 'delete 1'");
+            }
+            break;
         case "done":
             if (text[1].isEmpty() || text[1].isBlank()) {
                 throw new DukeException("\t☹ OOPS!!! Please specify a task to be marked as done!");
@@ -163,6 +184,25 @@ public class Parser {
     public void addEvent(String event, String date, String time) throws DukeException {
         this.task = new Event(event, date, time);
         todoList.add(this.task);
+    }
+
+    public void updateTask(int index, String[] text) {
+        String date = "";
+        if (todoList.get(index - 1).getType() == "T") {
+            this.body = String.join(" ", Arrays.copyOfRange(text, 1, text.length));
+            Todo updateTodo = (Todo) todoList.get(index - 1);
+            updateTodo.update(this.body);
+        } else if (todoList.get(index - 1).getType() == "D") {
+            Deadline updateDeadline = (Deadline) todoList.get(index - 1);
+            this.body = String.join(" ", Arrays.copyOfRange(text, 1, text.length - 2));
+            date = String.join(" ", Arrays.copyOfRange(text, text.length - 2, text.length));
+            updateDeadline.update(this.body, date);
+        } else {
+            Event updateEvent = (Event) todoList.get(index - 1);
+            this.body = String.join(" ", Arrays.copyOfRange(text, 1, text.length - 3));
+            date = String.join(" ", Arrays.copyOfRange(text, text.length - 3, text.length - 1));
+            updateEvent.update(this.body, date, text[text.length - 1]);
+        }
     }
 
     public Task getTask() {

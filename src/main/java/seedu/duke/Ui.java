@@ -20,6 +20,13 @@ public class Ui {
         System.out.println("\t____________________________________________________________");
     }
 
+    public static void updateTask(String info) {
+        System.out.println("\t____________________________________________________________");
+        System.out.println("\tNoted. I've updated this task:");
+        System.out.println("\t\t" + info);
+        System.out.println("\t____________________________________________________________");
+    }
+
     public static void printList() {
         int i = 1;
         System.out.println("\t____________________________________________________________");

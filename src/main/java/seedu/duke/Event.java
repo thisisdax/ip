@@ -10,6 +10,13 @@ public class Event extends Task {
         this.time = time;
     }
 
+    public String update(String description, String date, String time) {
+        this.description = description;
+        this.date = date;
+        this.time = time;
+        return toString();
+    }
+
     @Override
     public String toString() {
         return "[E]" + "[" + super.getStatusIcon() + "] " + super.description + " (at: " + date + " " + time + ")";
@@ -24,4 +31,5 @@ public class Event extends Task {
     public String toSave() {
         return getType() + " | " + (super.isDone ? "1" : "0") + " | " + super.description + " | " + date + " " + time;
     }
+
 }

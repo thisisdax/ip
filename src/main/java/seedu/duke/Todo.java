@@ -5,6 +5,11 @@ public class Todo extends Task {
         super(description);
     }
 
+    public String update(String description) {
+        this.description = description;
+        return toString();
+    }
+
     @Override
     public String toString() {
         return "[T]" + "[" + super.getStatusIcon() + "] " + super.description;

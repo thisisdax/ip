@@ -8,6 +8,12 @@ public class Deadline extends Task {
         this.date = date;
     }
 
+    public String update(String description, String date) {
+        this.description = description;
+        this.date = date;
+        return toString();
+    }
+
     @Override
     public String toString() {
         return "[D]" + "[" + super.getStatusIcon() + "] " + super.description + " (by: " + date + ")";
