@@ -1,4 +1,4 @@
-package main.duke;
+package seedu.duke;
 
 public class Deadline extends Task {
     protected String date;
