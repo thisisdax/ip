@@ -1,7 +1,6 @@
 package seedu.duke;
 
 import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class Ui {
     private static ArrayList<Task> todoList = TaskList.getInstance().getList();

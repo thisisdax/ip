@@ -3,8 +3,8 @@ package seedu.duke;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Storage {
     private static String basePath = new File("").getAbsolutePath();
@@ -33,37 +33,39 @@ public class Storage {
         Parser parser = new Parser();
         String[] transformData = data.split(" \\| ");
         switch (transformData[0]) {
-            case "T":
-                try {
-                    parser.addTodo(transformData[2]);
-                } catch (DukeException e) {
-                    e.printErrorMessage();
-                }
-                if (Integer.parseInt(transformData[1]) > 0) {
-                    todoList.get(todoList.size() - 1).markAsDone();
-                }
-                break;
-            case "D":
-                try {
-                    parser.addDeadline(transformData[2], transformData[3]);
-                } catch (DukeException e) {
-                    e.printErrorMessage();
-                }
-                if (Integer.parseInt(transformData[1]) > 0) {
-                    todoList.get(todoList.size() - 1).markAsDone();
-                }
-                break;
-            case "E":
-                String[] dateAndTime = transformData[3].split(" ");
-                try {
-                    parser.addEvent(transformData[2], dateAndTime[0] + " " + dateAndTime[1], dateAndTime[2]);
-                } catch (DukeException e) {
-                    e.printErrorMessage();
-                }
-                if (Integer.parseInt(transformData[1]) > 0) {
-                    todoList.get(todoList.size() - 1).markAsDone();
-                }
-                break;
+        case "T":
+            try {
+                parser.addTodo(transformData[2]);
+            } catch (DukeException e) {
+                e.printErrorMessage();
+            }
+            if (Integer.parseInt(transformData[1]) > 0) {
+                todoList.get(todoList.size() - 1).markAsDone();
+            }
+            break;
+        case "D":
+            try {
+                parser.addDeadline(transformData[2], transformData[3]);
+            } catch (DukeException e) {
+                e.printErrorMessage();
+            }
+            if (Integer.parseInt(transformData[1]) > 0) {
+                todoList.get(todoList.size() - 1).markAsDone();
+            }
+            break;
+        case "E":
+            String[] dateAndTime = transformData[3].split(" ");
+            try {
+                parser.addEvent(transformData[2], dateAndTime[0] + " " + dateAndTime[1], dateAndTime[2]);
+            } catch (DukeException e) {
+                e.printErrorMessage();
+            }
+            if (Integer.parseInt(transformData[1]) > 0) {
+                todoList.get(todoList.size() - 1).markAsDone();
+            }
+            break;
+        default:
+            break;
         }
     }
 

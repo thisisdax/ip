@@ -1,9 +1,10 @@
 package seedu.duke;
 
-import java.util.*;
+import java.util.ArrayList;
 
 public class Duke {
     private static ArrayList<Task> todoList = TaskList.getInstance().getList();
+
     private static void run() {
         Storage.loadData();
         Parser parser = new Parser();
@@ -14,7 +15,8 @@ public class Duke {
                     System.out.println("\t____________________________________________________________");
                     System.out.println("\tGot it. I've added this task: ");
                     System.out.println("\t\t" + parser.getTask().toString());
-                    System.out.println("\tNow you have " + todoList.size() + (todoList.size() > 1 ? " tasks" : " task") + " in the list.");
+                    System.out.println("\tNow you have " + todoList.size()
+                        + (todoList.size() > 1 ? " tasks" : " task") + " in the list.");
                     System.out.println("\t____________________________________________________________");
                 }
             } catch (DukeException e) {
@@ -22,6 +24,7 @@ public class Duke {
             }
         }
     }
+
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"

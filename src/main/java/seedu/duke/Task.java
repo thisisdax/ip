@@ -5,7 +5,7 @@ public abstract class Task {
     protected boolean isDone;
 
     public Task(String description) throws DukeException {
-        if(description.isEmpty() || description.isBlank()) {
+        if (description.isEmpty() || description.isBlank()) {
             throw new DukeException("\t☹ OOPS!!! The description of a todo cannot be empty.");
         } else {
             this.description = description;
