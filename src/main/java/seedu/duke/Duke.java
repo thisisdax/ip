@@ -30,7 +30,13 @@ public class Duke {
      * Replace this stub with your completed method.
      */
     String getResponse(String input) {
-        return "Duke heard: " + input;
+        Parser parser = new Parser();
+        try {
+            parser.getInput(input);
+            return "Got it. I've added this task: " + parser.getTask().toString();
+        } catch (DukeException e) {
+            return e.getMessage();
+        }
     }
 
     public static void main(String[] args) {

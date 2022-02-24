@@ -213,4 +213,8 @@ public class Parser {
         this.input = this.scan.nextLine();
         this.parse(input);
     }
+
+    public void getInput(String input) throws DukeException {
+        this.parse(input);
+    }
 }
